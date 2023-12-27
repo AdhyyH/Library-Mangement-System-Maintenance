@@ -101,7 +101,7 @@ $result = mysqli_query($conn, $query);
                   <li><a href="../manage_book_record/manage_book_record.php">Manage Book Record</a></li>
                   <li><a href="../manage_user/ManageUser.php">Manage User</a></li>
                   <li><a href="manageFineModule.php">Manage Fine</a></li>
-                  <li><a href="../manage_reservation/managereserv.php">Manage Reservation</a></li>
+                  <li><a href="../manage_reservation/viewRReserve.php">Manage Reservation</a></li>
                   <li><a href="../viewReport/ReportMain.php">Report</a></li>
                 </ul>
               </li>

@@ -63,7 +63,7 @@
                   <li><a href="../manage_book_record/manage_book_record.php">Manage Book Record</a></li>
                   <li><a href="../manage_User/ManageUser.php">Manage User</a></li>
 				  <li><a href="../manageFineModule/manageFineModule.php">Manage Fine</a></li>
-				  <li><a href="../manage_reservation/managereserv.php">Manage Reservation</a></li>
+				  <li><a href="../manage_reservation/viewRReserve.php">Manage Reservation</a></li>
 				  <li><a href="../viewReport/ReportMain.php">Report</a></li>
                 </ul>
               </li>
@@ -98,7 +98,7 @@
 				        <input type="button" value="Manage Book Record" onclick="location.href='../manage_book_record/manage_book_record.php'"><br>
 				        <input type="button" value="Manage User" onclick="location.href='../manage_User/ManageUser.php'"><br>
 				        <input type="button" value="Manage Fine" onclick="location.href='../manageFineModule/manageFineModule.php'"><br>
-				        <input type="button" value="Manage Reservation" onclick="location.href='../manage_reservation/managereserv.php'"><br>
+				        <input type="button" value="Manage Reservation" onclick="location.href='../manage_reservation/viewRReserve.php'"><br>
 				        <input type="button" value="View Report" onclick="location.href='../viewReport/ReportMain.php'">
                     
                 </div>
