@@ -1,3 +1,50 @@
+<?php
+
+// Check if the reservation form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['create'])) {
+  $BorrowerName = mysqli_real_escape_string($conn, $_POST["BorrowerName"]);
+  $RoomID = mysqli_real_escape_string($conn, $_POST["RoomID"]);
+  $RoomName = mysqli_real_escape_string($conn, $_POST["RoomName"]);
+  $RoomDetails = mysqli_real_escape_string($conn, $_POST["RoomDetails"]);
+  $reservDate = mysqli_real_escape_string($conn, $_POST["reservDate"]);
+  $reserveTime = mysqli_real_escape_string($conn, $_POST["reserveTime"]);
+
+
+      // Check if there is an existing reservation for the specified RoomID, Reservation Date, and Reservation Time
+      $checkQuery = "SELECT * FROM roomreservation WHERE RoomID = '$RoomID' AND reservDate = '$reservDate' AND reserveTime = '$reserveTime'";
+      $checkResult = mysqli_query($conn, $checkQuery);
+
+    if (!$checkResult) {
+        die("Error in SQL query: " . mysqli_error($conn));
+    }
+
+    if (mysqli_num_rows($checkResult) > 0) {
+        // Room is already booked at the specified date and time
+        $error = "Sorry, the room is already booked at the specified date and time.";
+        header("Location: ../your_reservation_page.php?error=" . urlencode($error));
+        exit();
+    } else {
+        // Perform the reservation insertion
+        $insertQuery = "INSERT INTO reservationroom (BorrowerName, RoomID, RoomName, RoomDetails, reservDate, reserveTime) 
+                        VALUES ('$BorrowerName', '$RoomID', '$RoomName', '$RoomDetails', '$reservDate', '$reserveTime')";
+
+        $insertResult = mysqli_query($conn, $insertQuery);
+
+        if ($insertResult) {
+            // Reservation successful
+            $success = "Room reserved successfully.";
+            header("Location: ../your_reservation_page.php?success=" . urlencode($success));
+            exit();
+        } else {
+            // Handle insert error
+            $error = "Error: " . mysqli_error($conn);
+            header("Location: ../your_reservation_page.php?error=" . urlencode($error));
+            exit();
+        }
+    }
+}
+?>
+
 <html lang="en">
 
 <head>
@@ -166,6 +213,16 @@
                           value="<?php if (isset($_GET['reservDate'])) echo($_GET['reservDate']); ?>"
                           placeholder="Enter reservation date">
                   </div>
+                  <br>
+                  <div class="form-group">
+                    <label for="reservDate">Reservation Time</label>
+                    <input type="time" 
+                          class="form-control" 
+                          id="reserveTime" 
+                          name="reserveTime" 
+                          value="<?php if (isset($_GET['reserveTime'])) echo($_GET['reserveTime']); ?>"
+                          placeholder="Enter reservation date">
+  
                   <br>
                   <button type="submit" class="btn btn-primary" name="create">create</button>
                   <a href="viewRReserv.php" class="btn btn-primary">View </a>

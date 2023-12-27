@@ -14,8 +14,9 @@ if (isset($_POST['create'])) {
     $RoomName = validate($_POST['RoomName']);
     $RoomDetails = validate($_POST['RoomDetails']);
     $reservDate = validate($_POST['reservDate']);
+    $reserveTime = validate($_POST['reserveTime']);
 
-    $RoomReservData = 'BorrowerName'.$BorrowerName. 'RoomID'.$RoomID. 'RoomName'.$RoomName. 'RoomDetails'.$RoomDetails. 'reservDate'.$reservDate;
+    $RoomReservData = 'BorrowerName'.$BorrowerName. 'RoomID'.$RoomID. 'RoomName'.$RoomName. 'RoomDetails'.$RoomDetails. 'reservDate'.$reservDate. 'reserveTime'.$reserveTime;
 
     if (empty($BorrowerName)){
         header("Location: ../MRoomReserv.php?error=Borrower Name is required&$RoomReservData");
@@ -29,9 +30,12 @@ if (isset($_POST['create'])) {
     }
     elseif (empty($reservDate)){
         header("Location: ../MRoomReserv.php?error=Reservation Date is required&$RoomReservData");
+    }
+    elseif (empty($reserveTime)){
+            header("Location: ../MRoomReserv.php?error=Reservation Time is required&$RoomReservData");
     }else{
-        $sql = "INSERT INTO roomreservation (BorrowerName, RoomID, RoomName, RoomDetails, reservDate) 
-                VALUES ('$BorrowerName', '$RoomID', '$RoomName', '$RoomDetails', '$reservDate')";
+        $sql = "INSERT INTO roomreservation (BorrowerName, RoomID, RoomName, RoomDetails, reservDate, reserveTime) 
+                VALUES ('$BorrowerName', '$RoomID', '$RoomName', '$RoomDetails', '$reservDate', '$reserveTime')";
 
         $result = mysqli_query($conn,$sql);
 
