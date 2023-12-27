@@ -13,7 +13,8 @@
   <link href="assets/img/logo.png" rel="icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
@@ -26,16 +27,126 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-    <style>
+  <style>
     .box {
-        width: 100%;
+      width: 100%;
     }
+
     .container table {
-        padding: 5px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px 0 #00aea6f0, 0 6px 20px 0 #00aea6f0;
-     }
-</style>
+      padding: 5px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px 0 #00aea6f0, 0 6px 20px 0 #00aea6f0;
+    }
+
+
+    .table-container {
+      max-height: 350px;
+      /* Set a max-height for the table container */
+      overflow-y: auto;
+    }
+
+    .my-custom-scrollbar {
+      position: relative;
+      height: 350px;
+      /* Set your desired height */
+      overflow: auto;
+    }
+
+    .table-wrapper-scroll-y {
+      display: block;
+    }
+
+    input[type=text] {
+      width: 100%;
+      padding: 10px;
+    }
+
+    td {
+      text-align: center;
+    }
+
+    #list th,
+    #list td {
+      border: 3px solid black;
+      border-collapse: collapse;
+      background: white;
+      padding: 5px;
+    }
+
+    #list th {
+      background-color: #ffd503;
+      color: white;
+    }
+
+    #list tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    #list tr:hover {
+      background-color: #ddd;
+    }
+
+    #searchButton {
+      width: 100%;
+      font-size: 20px;
+      padding: 7px;
+      border: 1px solid #ddd;
+    }
+
+    #greenlinks:link,
+    #greenlinks:visited {
+      background-color: #00aea6;
+      color: white;
+      padding: 6px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 4px;
+    }
+
+    #greenlinks:hover,
+    #greenlinks:active {
+      background-color: #ffd600;
+      color: black;
+    }
+
+    #redlinks:link,
+    #redlinks:visited {
+      background-color: #eb2d53;
+      color: white;
+      padding: 6px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 4px;
+    }
+
+    #redlinks:hover,
+    #redlinks:active {
+      background-color: #ffd600;
+      color: black;
+    }
+
+    input[type=text] {
+      width: 75%;
+      padding: 10px;
+    }
+
+    .searchButton {
+      width: 20%;
+      padding: 10px;
+    }
+
+    .my-custom-scrollbar {
+      position: left;
+      height: 350px;
+      overflow: auto;
+    }
+
+    .table-wrapper-scroll-y {
+      display: block;
+    }
+  </style>
 </head>
 
 <body>
@@ -47,17 +158,17 @@
       <div class="row justify-content-center align-items-center">
         <div class="col-xl-11 d-flex align-items-center justify-content-between">
           <h1 class="logo"><a href="../login/librarian.php">Library Management System</a></h1>
-          
+
           <nav id="navbar" class="navbar">
             <ul>
               <li><a class="nav-link scrollto active" href="../login/librarian.php">Home</a></li>
-			  <li class="dropdown"><a href="#"><span>Menu</span> <i class="bi bi-chevron-down"></i></a>
+              <li class="dropdown"><a href="#"><span>Menu</span> <i class="bi bi-chevron-down"></i></a>
                 <ul>
                   <li><a href="../manage_book_record.php">Manage Book Record</a></li>
                   <li><a href="../manage_user/ManageUser.php">Manage User</a></li>
-				  <li><a href="../manageFineModule/manageFineModule.php">Manage Fine</a></li>
-				  <li><a href="managereserv.php">Manage Reservation</a></li>
-				  <li><a href="../viewReport/ReportMain.php">Report</a></li>
+                  <li><a href="../manageFineModule/manageFineModule.php">Manage Fine</a></li>
+                  <li><a href="managereserv.php">Manage Reservation</a></li>
+                  <li><a href="../viewReport/ReportMain.php">Report</a></li>
                 </ul>
               </li>
               <li class="dropdown"><a href="#"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
@@ -78,71 +189,86 @@
   <section id="hero">
     <div class="hero-container">
 
-        <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
+      <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
 
-        <div class="carousel-inner" role="listbox">
+      <div class="carousel-inner" role="listbox">
 
-          <div class="carousel-item active" style="background-image: url(assets/img/book/book1.jpg)">
-            <div class="carousel-container">
-              <div class="container">
-                <h3 style="color: white;" class="animate__animated animate__fadeInDown">Manage Room Reservation</h3>
-                <div class="container1">
-                    <div class="box">
-                    <h9 style="color: white;" class="display-4 text-center">View List of Room Reservation</h9>
+        <div class="carousel-item active" style="background-image: url(assets/img/book/book1.jpg)">
+          <div class="carousel-container">
+            <div class="container">
+              <h3 style="color: white;" class="animate__animated animate__fadeInDown">Manage Room Reservation</h3>
+              <div class="container1">
+                < class="box">
+                  <h9 style="color: white;" class="display-4 text-center">List of Room Reservation</h9>
 
-                    <?php if (isset($_GET['success'])) { ?>
+                  <?php if (isset($_GET['success'])) { ?>
                     <div class="alert alert-success" role="alert">
-                        <?php echo $_GET['success']; ?>
+                      <?php echo $_GET['success']; ?>
                     </div>
-                    <?php }?>
+                  <?php } ?>
 
-                    <?php if (mysqli_num_rows($result)){?>
-                    <table class="table table-striped">
-                    <thead>
-                        <tr>
-                        <th scope="col">Room Reservation ID</th>
-                        <th scope="col">Borrower Name</th>
-                        <th scope="col">Room ID</th>
-                        <th scope="col">Room Name</th>
-                        <th scope="col">Room Details</th>
-                        <th scope="col">Reservation Date</th>
-                        <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    $n = 0;
-                    while($rows = mysqli_fetch_assoc($result)){
-                    $n++;
-                    ?>
-                        <tr>
-                        <th scope="row"><?=$n?></th>
-                        <td><?=$rows['BorrowerName']?></td>
-                        <td><?php echo $rows['RoomID']; ?></td>
-                        <td><?php echo $rows['RoomName']; ?></td>
-                        <td><?php echo $rows['RoomDetails']; ?></td>
-                        <td><?php echo $rows['reservDate']; ?></td>
-                        
-                        <td><a href="EditRReserv.php?RoomReservID=<?=$rows['RoomReservID']?>" 
-                              class="btn btn-success">Edit</a>
+                  <?php if (mysqli_num_rows($result)) { ?>
+  
+                      <!-- list of existing books -->
+                      <table class="table table-bordered table-striped mb-0">
+                        <thead>
+                          <tr>
+                            <th scope="col">Room Reservation ID</th>
+                            <th scope="col">Borrower Name</th>
+                            <th scope="col">Room ID</th>
+                            <th scope="col">Room Name</th>
+                            <th scope="col">Room Details</th>
+                            <th scope="col">Reservation Date</th>
+                            <th scope="col">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php
+                          $n = 0;
+                          while ($rows = mysqli_fetch_assoc($result)) {
+                            $n++;
+                            ?>
+                            <tr>
+                              <th scope="row">
+                                <?= $n ?>
+                              </th>
+                              <td>
+                                <?= $rows['BorrowerName'] ?>
+                              </td>
+                              <td>
+                                <?php echo $rows['RoomID']; ?>
+                              </td>
+                              <td>
+                                <?php echo $rows['RoomName']; ?>
+                              </td>
+                              <td>
+                                <?php echo $rows['RoomDetails']; ?>
+                              </td>
+                              <td>
+                                <?php echo $rows['reservDate']; ?>
+                              </td>
 
-                            <a href="controller/deleteRReserv_ctrl.php?RoomReservID=<?=$rows['RoomReservID']?>" 
-                              class="btn btn-danger">Delete</a></td>
-                        </tr>
-                    <?php  }?>
-                    </tbody>
-                    </table>
-                    <?php  }?>
-                    <div >
-                    <a href="MRoomReserv.php" class="btn btn-primary">Create</a>
-                    <a href="managereserv.php" class="btn btn-primary">Back</a>
-                    </div>
+                              <td><a href="EditRReserv.php?RoomReservID=<?= $rows['RoomReservID'] ?>"
+                                  class="btn btn-success">Edit</a>
+
+                                <a href="controller/deleteRReserv_ctrl.php?RoomReservID=<?= $rows['RoomReservID'] ?>"
+                                  class="btn btn-danger">Delete</a>
+                              </td>
+                            </tr>
+                          <?php } ?>
+                        </tbody>
+                      </table>
+                <?php } ?>
+                <div>
+                  <a href="MRoomReserv.php" class="btn btn-primary">Create</a>
+                  <a href="managereserv.php" class="btn btn-primary">Back</a>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-    </div>
+      </div>
   </section><!-- End Hero Section -->
 
   <!-- ======= Footer ======= -->
@@ -164,7 +290,8 @@
     </div>
   </footer><!-- End Footer -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
   <!-- Uncomment below i you want to use a preloader -->
   <!-- <div id="preloader"></div> -->
 
