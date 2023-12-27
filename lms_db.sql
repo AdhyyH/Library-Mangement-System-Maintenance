@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2022 at 10:17 AM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 7.3.28
+-- Generation Time: Dec 27, 2023 at 06:51 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,7 +35,7 @@ CREATE TABLE `book` (
   `publication_date` date DEFAULT NULL,
   `totalPages` int(11) DEFAULT NULL,
   `Book_rating` decimal(10,0) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `book`
@@ -93,7 +93,7 @@ CREATE TABLE `bookreservation` (
   `BookName` varchar(100) NOT NULL,
   `BorrowDate` date NOT NULL,
   `ReturnDate` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `bookreservation`
@@ -124,80 +124,22 @@ CREATE TABLE `borrower` (
   `Borrower_IC_num` varchar(20) DEFAULT NULL,
   `Borrower_Phone_num` varchar(20) DEFAULT NULL,
   `Borrower_email` varchar(30) DEFAULT NULL,
-  `Borrower_Address` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `Borrower_Address` varchar(100) DEFAULT NULL,
+  `nameBook` text DEFAULT NULL,
+  `isbn` int(10) DEFAULT NULL,
+  `borrowDate` date DEFAULT NULL,
+  `borrowRet` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `borrower`
 --
 
-INSERT INTO `borrower` (`Borrower_ID`, `Borrower_name`, `Borrower_type`, `Borrower_IC_num`, `Borrower_Phone_num`, `Borrower_email`, `Borrower_Address`) VALUES
-('AA17054', 'Hanana Sorfina binti Haizam', 'Non Member', '011213086352', '0124857639', 'hananasorfina@gmail.com', 'Hulu Bernam, Selangor, Malaysia.'),
-('AA19034', 'Ahmad Syahmi bin Zakaria', 'Non Member', '970422070311', '0173461752', 'SyahmiZakaria@gmail.com', 'Telok Intan, Perak, Malaysia.'),
-('BA19157', 'Safuan bin Rahim', 'Non Member', '981123086427', '0173265982', 'safuanrahim@gmail.com', 'Petaling Jaya, Selangor, Malaysia.'),
-('BC17012', 'Sakinah Amirah binti Halim', 'Member', '950127063254', '0193264173', 'sakinahhalim@gmail.com', 'Kota Tinggi, Johor, Malaysia.'),
-('CA17013', 'Halimah binti Tajul', 'Member', '980617020314', '0143678649', 'halimahTajul@gmail.com', 'Batu Pahat, Johor, Malaysia.'),
-('CB18056', 'Nurul Farahani binti Mustafa', 'Member', '971213049674', '0187943169', 'farahanimustafa@gmail.com', 'Rembau, Negeri sembilan, Malaysia.'),
-('CD16087', 'Siti Mariam binti Halim', 'Member', '990117082546', '0163421987', 'MariamHalim@gmail.com', 'Ayer Keroh, Melaka, Malaysia.'),
-('EA17032', 'Tan Chen Long', 'Member', '960112073691', '0196473215', 'chenlong@gmail.com', 'Mentakab, Pahang, Malaysia.'),
-('EE18021', 'Fadhilah binti Murad', 'Non Member', '990516027412', '0187632595', 'fadhilahmurad@gmail.com', 'Jitra, kedah, Malaysia.'),
-('MA20134', 'Jefri bin Manaf', 'Member', '010603026471', '0184216794', 'Jefrimanaf@gmail.com', 'Kota Bharu, Kelantan, Malaysia.'),
-('TA20563', 'Kumar A/L Madialagen', 'Member', '000719073625', '0123698524', 'kumarmadialagen@gmail.com', 'Besut, Terengganu, Malaysia.'),
-('TC18463', 'Ooi Gian Lee', 'Non Member', '920312087219', '0193476247', 'GuanLee@gmail.com', 'Bukit Mertajam, Pulau Pinang, Malaysia.'),
-('TC19064', 'Muhamad Amirul bin Shukri', 'Member', '980415081479', '0142375691', 'amirulshukri@gmail.com', 'Kota Kinabalu, Sabah, Malaysia.'),
-('TK17094', 'Manushri A/P Suthakar', 'Non Member', '000476079258', '0172469513', 'manushri15@gmail.com', 'Kepala Batas, Pulau Pinang, Malaysia.');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `calculatefine`
---
-
-CREATE TABLE `calculatefine` (
-  `id` int(10) NOT NULL,
-  `borrower_name` varchar(255) NOT NULL,
-  `days` text NOT NULL,
-  `fine` text NOT NULL,
-  `total` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `calculatefine`
---
-
-INSERT INTO `calculatefine` (`id`, `borrower_name`, `days`, `fine`, `total`) VALUES
-(13320, 'Emily A/P Kumar', '5', '0.20', '1'),
-(13333, 'Ahmad Ali', '26', '0.20', '5.20'),
-(14450, 'Kang Long Pong', '4', '0.20', '0.80'),
-(19079, 'Siti Aishah', '10', '0.20', '2'),
-(22104, 'Oon Ken Sim', '13', '0.20', '2.60'),
-(22105, 'Nur Natasha Binti Samad', '36', '0.20', '7.20');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `finerecord`
---
-
-CREATE TABLE `finerecord` (
-  `id` int(10) NOT NULL,
-  `borrower_name` varchar(255) NOT NULL,
-  `book_title` varchar(255) DEFAULT NULL,
-  `isbn` varchar(255) NOT NULL,
-  `borrowed_date` date NOT NULL,
-  `return_date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `finerecord`
---
-
-INSERT INTO `finerecord` (`id`, `borrower_name`, `book_title`, `isbn`, `borrowed_date`, `return_date`) VALUES
-(13320, 'Nur Ilayni', 'How to Code', '9780334621550', '2021-04-10', '2021-04-24'),
-(19063, 'Kalaivani', 'How To Be Successful', '9780333146527', '2021-05-08', '2021-05-12'),
-(19079, 'Nur Hasya', 'Programming Technique', '9780026515627', '2021-04-06', '2021-04-20'),
-(20113, 'Nurul Fatimah', 'Discrete Mathematics', '9708131857575', '2021-04-23', '2021-04-30'),
-(30112, 'Amanda A/P Jaya', 'Engineering Process', '9780664819935', '2020-12-15', '2020-12-31');
+INSERT INTO `borrower` (`Borrower_ID`, `Borrower_name`, `Borrower_type`, `Borrower_IC_num`, `Borrower_Phone_num`, `Borrower_email`, `Borrower_Address`, `nameBook`, `isbn`, `borrowDate`, `borrowRet`) VALUES
+('AA17054', 'Hanana Sorfina binti Haizam', 'Staff', '011213086352', '0124857639', 'hananasorfina@gmail.com', 'Hulu Bernam, Selangor, Malaysia.', 'The History of Life', 1100223355, '2023-12-20', '2023-12-31'),
+('AA19034', 'Ahmad Syahmi bin Zakaria', 'Staff', '970422070311', '0173461752', 'SyahmiZakaria@gmail.com', 'Telok Intan, Perak, Malaysia.', 'How to Cook', 1234567890, '2023-11-01', '2023-11-16'),
+('CA17013', 'Halimah binti Tajul', 'Student', '980617020314', '0143678649', 'halimahTajul@gmail.com', 'Batu Pahat, Johor, Malaysia.', 'Software Engineering Maintenance: A Maintainer\'s Approach', 1245369512, '2023-12-20', '2023-12-31'),
+('CB18056', 'Nurul Farahani binti Mustafa', 'Student', '971213049674', '0187943169', 'farahanimustafa@gmail.com', 'Rembau, Negeri sembilan, Malaysia.', 'Applied Statistics: Guidance Approach', 1241563215, '2023-11-01', '2023-11-16');
 
 -- --------------------------------------------------------
 
@@ -212,7 +154,7 @@ CREATE TABLE `librarian` (
   `password` varchar(30) NOT NULL,
   `Email` varchar(30) DEFAULT NULL,
   `phoneNum` varchar(12) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `librarian`
@@ -240,7 +182,7 @@ CREATE TABLE `returnbook` (
   `BorrowDate` date NOT NULL,
   `ReturnDate` date NOT NULL,
   `ReturnStatus` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `returnbook`
@@ -271,7 +213,7 @@ CREATE TABLE `roomreservation` (
   `RoomName` varchar(20) NOT NULL,
   `RoomDetails` varchar(50) NOT NULL,
   `reservDate` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `roomreservation`
@@ -310,18 +252,6 @@ ALTER TABLE `borrower`
   ADD PRIMARY KEY (`Borrower_ID`);
 
 --
--- Indexes for table `calculatefine`
---
-ALTER TABLE `calculatefine`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `finerecord`
---
-ALTER TABLE `finerecord`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `librarian`
 --
 ALTER TABLE `librarian`
@@ -348,18 +278,6 @@ ALTER TABLE `roomreservation`
 --
 ALTER TABLE `bookreservation`
   MODIFY `BookReservID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `calculatefine`
---
-ALTER TABLE `calculatefine`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22106;
-
---
--- AUTO_INCREMENT for table `finerecord`
---
-ALTER TABLE `finerecord`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30113;
 
 --
 -- AUTO_INCREMENT for table `returnbook`

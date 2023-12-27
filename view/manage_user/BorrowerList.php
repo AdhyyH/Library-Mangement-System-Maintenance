@@ -169,8 +169,6 @@ input[type=text]
                 <p class="animate__animated animate__fadeInUp"></p>
 				
 				<center>
-
-
 					<table>
 					
 					  <!-- TitleColumn -->
@@ -182,6 +180,11 @@ input[type=text]
 						<td style="background-color:#00aea6; color: white"><b>Phone Number</b></td>
 						<td style="background-color:#00aea6; color: white"><b>Email</b></td>
 						<td style="background-color:#00aea6; color: white"><b>Address</b></td>
+						<td style="background-color:#00aea6; color: white"><b>Book Name</b></td>
+						<td style="background-color:#00aea6; color: white"><b>ISBN</b></td>
+						<td style="background-color:#00aea6; color: white"><b>Date of Borrow</b></td>
+						<td style="background-color:#00aea6; color: white"><b>Date of Return</b></td>
+						<td style="background-color:#00aea6; color: white"><b>Number of Days</b></td>
 						<td colspan="2" style="background-color:#00aea6; color: white"><b>ACTIONS</b></td>
 					  </tr>
 					  
@@ -195,6 +198,10 @@ input[type=text]
 							$Borrower_Phone_num = $row['Borrower_Phone_num'];
 							$Borrower_email = $row['Borrower_email'];
 							$Borrower_Address = $row['Borrower_Address'];
+							$nameBook = $row['nameBook'];
+							$isbn = $row['isbn'];
+							$borrowDate = $row['borrowDate'];
+							$borrowRet = $row['borrowRet'];
 					  ?>
 						<tr id="list">
 							<td><?php echo $Borrower_ID ?></td>
@@ -204,8 +211,31 @@ input[type=text]
 							<td><?php echo $Borrower_Phone_num ?></td>
 							<td><?php echo $Borrower_email ?></td>
 							<td><?php echo $Borrower_Address ?></td>
-							<td><a id="greenlinks" href="UpdateBorrower.php?GetBorrower=<?php echo $Borrower_ID ?>">Update</a></td>
-                            <td><a id="redlinks" onclick="DeleteBorrower()" href="DeleteBorrowerController.php?DeleteBorrower=<?php echo $Borrower_ID ?>">Delete</a></td>
+							<td><?php echo $nameBook ?></td>
+							<td><?php echo $isbn ?></td>
+							<td><?php echo $borrowDate ?></td>
+							<td><?php echo $borrowRet ?></td>
+							<td>
+								<?php
+									$borrowRet = $row['borrowRet'];
+									$currentDate = date('Y-m-d');
+									
+									// Check if the 'Date of Return' is in the future
+									if (strtotime($borrowRet) > strtotime($currentDate)) {
+										// If the 'Date of Return' is in the future, display a message or leave it empty
+										echo "Not applicable";
+									} else {
+										// Calculate the difference in days
+										$dateDifference = strtotime($currentDate) - strtotime($borrowRet);
+										$numberOfDays = abs(floor($dateDifference / (60 * 60 * 24)));
+
+										// Display the number of days
+										echo $numberOfDays;
+									}
+								?>
+							</td>
+                            <td><a id="greenlinks" href="UpdateBorrower.php?GetBorrower=<?php echo $Borrower_ID ?>">Update</a>
+							<a id="redlinks" onclick="DeleteBorrower()" href="DeleteBorrowerController.php?DeleteBorrower=<?php echo $Borrower_ID ?>">Delete</a></td>
 						</tr>
 					  <?php
 						}

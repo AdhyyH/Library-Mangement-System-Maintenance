@@ -1,3 +1,28 @@
+<?php
+	$conn = mysqli_connect("localhost", "root", "", "lms_db");
+	
+	if(!$conn) 
+	{ 
+		die(" Connection Error "); 
+	}
+	
+	$librarianID = $_GET['GetLibrarian'];
+	$query = "SELECT * FROM librarian
+				WHERE librarianID='".$librarianID."'";
+
+	$result = mysqli_query($conn, $query);
+	
+	while($row=mysqli_fetch_assoc($result))
+	{
+		$librarianID = $row['librarianID'];
+		$name = $row['name'];
+		$username = $row['username'];
+		$password = $row['password'];
+		$Email = $row['Email'];
+		$phoneNum = $row['phoneNum'];
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +30,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Fine Management</title>
+  <title>Update Librarians Details</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -37,22 +62,39 @@
 	{
 		border: 3px solid black;
 		border-collapse: collapse;
-		padding: 7px;
+		padding: 5px;
 		text-align: left;
 		background: white;
 	}
 	
 	th
 	{
-		background:#00aea6;
+		background: #ffd600;
 		color: black;
-		width: 10%;
+		width: 20%;
 	}
 	
 	td
 	{
-		width: 120%;
+		width: 80%;
 	}
+	
+	#backButton, #saveButton
+	{
+		border-radius: 12px;
+		padding: 10px 15px;
+		font-color: black;
+		background: #ffe033;
+		text-align : center;
+		font-size : 20px;
+	}
+	
+	#backButton:hover, #saveButton:hover
+	{
+		background: black;
+		color: #ffe033;
+	}
+	
   </style>
 
 </head>
@@ -75,8 +117,8 @@
 			  <li class="dropdown"><a href="#"><span>Menu</span> <i class="bi bi-chevron-down"></i></a>
                 <ul>
                   <li><a href="../manage_book_record/manage_book_record.php">Manage Book Record</a></li>
-                  <li><a href="../manage_user/ManageUser.php">Manage User</a></li>
-				  <li><a href="manageFineModule.php">Manage Fine</a></li>
+                  <li><a href="ManageUser.php">Manage User</a></li>
+				  <li><a href="../manageFineModule/manageFineModule.php">Manage Fine</a></li>
 				  <li><a href="../manage_reservation/managereserv.php">Manage Reservation</a></li>
 				  <li><a href="../viewReport/ReportMain.php">Report</a></li>
                 </ul>
@@ -106,42 +148,48 @@
           <div class="carousel-item active" style="background-image: url(assets/img/book/book1.jpg)">
             <div class="carousel-container">
               <div class="container">
-                
-				<!-- insert books -->
-				<form action="fineRecordController.php" method="POST">
-				<input type="hidden" name="action" value="insert">
+                <h2 class="animate__animated animate__fadeInDown">Update Librarians Details</h2>
+                <p class="animate__animated animate__fadeInUp">Please fill in the details below to update details about the librarians</p>
+				
+				<form action="UpdateLibrarianController.php?GetLibrarian=<?php echo $librarianID ?>" method="POST">
+				<input type="hidden" name="action" value="save">
 					<center>
-						<table border="1">
-						<th Colspan="3" style="text-align:center; background-color:#00aea6"><h5><b>Total Fine Record</b></h5></th>
+						<table>
 							<tr>
-								<th>ID</th>
-								<td><input type="text" id="id" name="id" placeholder="ID"></td>
+								<th>Librarians ID</th>
+								<td><input  type="text" id="librarianID" name="librarianID" value="<?php echo $librarianID ?>" disabled></td>
 							</tr>
 							
 							<tr>
-								<th>Borrrower Name</th>
-								<td><input type="text" id="borrower_name" name="borrower_name" placeholder="Borrower Name"></td>
+								<th>Name</th>
+								<td><input type="text" id="name" name="name" value="<?php echo $name ?>" ></td>
 							</tr>
 							
 							<tr>
-								<th>Total days after due</th>
-								<td><input type="text" id="days" name="days" placeholder="Total days "></td>
+								<th>Username</th>
+								<td><input type="text" id="username" name="username" value="<?php echo $username ?>" ></td>
 							</tr>
 							
 							<tr>
-								<th>Fine Amount per day</th>
-								<td><input type="text" id="fine" name="fine" placeholder="Fine Amount"></td>
+								<th>Password</th>
+								<td><input type="text" id="password" name="password" value="<?php echo $password ?>"></td>
 							</tr>
 							
 							<tr>
-								<th>Total Fine Amount</th>
-								<td><input type="text" id="total" name="total" placeholder="Total Fine"></td>
+								<th>Email</th>
+								<td><input type="text" id="Email" name="Email" value="<?php echo $Email ?>"></td>
 							</tr>
+
+                            <tr>
+								<th>Phone Number</th>
+								<td><input type="text" id="phoneNum" name="phoneNum" value="<?php echo $phoneNum ?>"></td>
+							</tr>
+							
+							<tr>
 						</table><br>
 						
-						<input type="button" value="Back " onclick="location.href='./manageFineModule.php'">
-						<input type="submit" value="Save" name="Confirm" onclick="calculateFine()">
-						<input type="reset" value="Reset">
+						<input type="button" id="backButton" name="Back" value="Back" onclick="location.href='./LibrarianList.php'">
+						<input type="submit" id="saveButton" name="Update" value="Save" onclick="UpdateLibrarian()">
 					</center>
 				</form>
               </div>
@@ -173,8 +221,6 @@
   </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-  <!-- Uncomment below i you want to use a preloader -->
-  <!-- <div id="preloader"></div> -->
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/aos/aos.js"></script>
@@ -189,13 +235,13 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   
-  <!-- Add Confirmation -->
+  <!-- Update Librarian Confirmation -->
   <script>
-  function calculateFine()
+  function UpdateLibrarian()
   {
-	if (confirm("Click Ok to proceed "))
+	if (confirm("Please confirm all the details of the borrower is correct"))
 	{
-		alert("Fine details are successfully added to the system");
+		alert("The borrower details was successfully updated");
 	}
 	else
 	{

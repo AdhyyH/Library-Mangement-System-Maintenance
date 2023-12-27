@@ -1,16 +1,15 @@
 <?php
-	$conn = mysqli_connect("localhost", "root", "", "lms_db");
-	
-	if(!$conn) 
-	{ 
-		die(" Connection Error "); 
-	}
-	
-	$query = "SELECT * FROM calculatefine
+$conn = mysqli_connect("localhost", "root", "", "lms_db");
+
+if (!$conn) {
+  die(" Connection Error ");
+}
+
+$query = "SELECT * FROM borrower
 				LIMIT 8";
-	
-	$result = mysqli_query($conn, $query);
-	
+
+$result = mysqli_query($conn, $query);
+
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +27,8 @@
   <link href="assets/img/logo.png" rel="icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
@@ -40,46 +40,43 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
- 
+
   <style>
-	input[type=text] 
-	{
-	  width: 100%;
-	  padding: 10px;
-	}
-  
-	#list th, #list td 
-	{
-	  border: 3px solid black;
-	  border-collapse: collapse;
-	  background: white;
-	  padding: 15px;
-	}
+    input[type=text] {
+      width: 100%;
+      padding: 10px;
+    }
 
-	#list th 
-	{
-	  background-color: #4dff4d;
-	  color: white;
-	  padding:10px;
-	}
-	
-	#redlinks:link, #redlinks:visited 
-	{
-	  background-color:#eb2d53;
-	  color: white;
-	  padding: 6px;
-	  text-align: center;
-	  text-decoration: none;
-	  display: inline-block;
-	  border-radius: 4px;
-	}
+    #list th,
+    #list td {
+      border: 3px solid black;
+      border-collapse: collapse;
+      background: white;
+      padding: 15px;
+    }
 
-	#redlinks:hover, #redlinks:active 
-	{
-	  background-color: #ffd600;
-	  color: black;
-	}
-	
+    #list th {
+      background-color: #4dff4d;
+      color: white;
+      padding: 10px;
+    }
+
+    #redlinks:link,
+    #redlinks:visited {
+      background-color: #eb2d53;
+      color: white;
+      padding: 6px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 4px;
+    }
+
+    #redlinks:hover,
+    #redlinks:active {
+      background-color: #ffd600;
+      color: black;
+    }
   </style>
 
 </head>
@@ -99,13 +96,13 @@
           <nav id="navbar" class="navbar">
             <ul>
               <li><a href="../login/librarian.php">Home</a></li>
-			  <li class="dropdown"><a href="#"><span>Menu</span> <i class="bi bi-chevron-down"></i></a>
+              <li class="dropdown"><a href="#"><span>Menu</span> <i class="bi bi-chevron-down"></i></a>
                 <ul>
                   <li><a href="../manage_book_record/manage_book_record.php">Manage Book Record</a></li>
                   <li><a href="../manage_user/ManageUser.php">Manage User</a></li>
-				  <li><a href="manageFineModule.php">Manage Fine</a></li>
-				  <li><a href="../manage_reservation/managereserv.php">Manage Reservation</a></li>
-				  <li><a href="../viewReport/ReportMain.php">Report</a></li>
+                  <li><a href="manageFineModule.php">Manage Fine</a></li>
+                  <li><a href="../manage_reservation/managereserv.php">Manage Reservation</a></li>
+                  <li><a href="../viewReport/ReportMain.php">Report</a></li>
                 </ul>
               </li>
               <li class="dropdown"><a href="#"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
@@ -126,60 +123,123 @@
   <section id="hero">
     <div class="hero-container">
 
-        <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
+      <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
 
-        <div class="carousel-inner" role="listbox">
+      <div class="carousel-inner" role="listbox">
 
-          <div class="carousel-item active" style="background-image: url(assets/img/book/book1.jpg)">
-            <div class="carousel-container">
-              <div class="container">
-                <h2 class="animate__animated animate__fadeInDown">View Details</h2>
-				<center>
-					<table>
+        <div class="carousel-item active" style="background-image: url(assets/img/book/book1.jpg)">
+          <div class="carousel-container">
+            <div class="container">
+              <h2 class="animate__animated animate__fadeInDown">Fine Details</h2>
+              <center>
+                <table>
 
-					  <tr id="list">
-						<td style="background-color:#00aea6; color: white;"><b>ID</b></td>
-						<td style="background-color:#00aea6; color: white;"><b>Borrower Name</b></td>
-						<td style="background-color:#00aea6; color: white;"><b>Total Days After Due</b></td>
-						<td style="background-color:#00aea6; color: white;"><b>Fine per day (RM)</b></td>
-						<td style="background-color:#00aea6; color: white;"><b>Total Fine Amount (RM)</b></td>
-						<td style="background-color:#ff0000; color:white"><b>Delete</b></td>
-					  </tr>
-					  
-					
-		
-					  <?php
-						while($row=mysqli_fetch_assoc($result))
-						{
-							$id = $row['id'];
-							$borrower_name = $row['borrower_name'];
-							$days = $row['days'];
-							$fine = $row['fine'];
-							$total = $row['total'];
-					  ?>
-						<tr id="list">
-							<td><?php echo $id ?></td>
-							<td><?php echo $borrower_name ?></td>
-							<td><?php echo $days ?></td>
-							<td><?php echo $fine ?></td>
-							<td><?php echo $total ?></td>
-							<td><a id="redlinks" onclick="delete()" href="deleteFineController.php?Delete=<?php echo $id ?>"><b>Delete</b></a></td>
+                  <tr id="list">
+                    <td style="background-color:#00aea6; color: white;"><b>Borrower ID</b></td>
+                    <td style="background-color:#00aea6; color: white;"><b>Borrower Name</b></td>
+                    <td style="background-color:#00aea6; color: white"><b>Type</b></td>
+                    <td style="background-color:#00aea6; color: white"><b>Book Name</b></td>
+                    <td style="background-color:#00aea6; color: white"><b>ISBN</b></td>
+                    <td style="background-color:#00aea6; color: white"><b>Date of Borrow</b></td>
+                    <td style="background-color:#00aea6; color: white"><b>Date of Return</b></td>
+                    <td style="background-color:#00aea6; color: white;"><b>Total Days After Due</b></td>
+                    <td style="background-color:#00aea6; color: white;"><b>Fine per day (RM)</b></td>
+                    <td style="background-color:#00aea6; color: white;"><b>Total Fine Amount (RM)</b></td>
+                    <td style="background-color:#ff0000; color:white"><b>Delete</b></td>
+                  </tr>
 
-						</tr>
-					  <?php
-						}
-					  ?>
-					
-					</table><br>
-					
-					<input type="button" value="Back " onclick="location.href='./manageFineModule.php'"><br>
-				</center>
-				
-			  </div>
+
+
+                  <?php
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    $Borrower_ID = $row['Borrower_ID'];
+                    $Borrower_name = $row['Borrower_name'];
+                    $Borrower_type = $row['Borrower_type'];
+                    $nameBook = $row['nameBook'];
+                    $isbn = $row['isbn'];
+                    $borrowDate = $row['borrowDate'];
+                    $borrowRet = $row['borrowRet'];
+
+                    // Calculate fine per day based on user type
+                    $finePerDay = ($Borrower_type == 'Student') ? 0.20 : 0.40;
+
+                    // Calculate total fine amount based on total days after due
+                    $borrowRet = $row['borrowRet'];
+                    $currentDate = date('Y-m-d');
+                    $totalFineAmount = 0;
+
+                    // Check if the 'Date of Return' is in the future
+                    if (strtotime($borrowRet) <= strtotime($currentDate)) {
+                      // Calculate the difference in days
+                      $dateDifference = strtotime($currentDate) - strtotime($borrowRet);
+                      $numberOfDays = abs(floor($dateDifference / (60 * 60 * 24)));
+
+                      // Calculate the total fine amount
+                      $totalFineAmount = $finePerDay * $numberOfDays;
+                    }
+
+                    ?>
+                    <tr id="list">
+                      <td>
+                        <?php echo $Borrower_ID ?>
+                      </td>
+                      <td>
+                        <?php echo $Borrower_name ?>
+                      </td>
+                      <td>
+                        <?php echo $Borrower_type ?>
+                      </td>
+                      <td>
+                        <?php echo $nameBook ?>
+                      </td>
+                      <td>
+                        <?php echo $isbn ?>
+                      </td>
+                      <td>
+                        <?php echo $borrowDate ?>
+                      </td>
+                      <td>
+                        <?php echo $borrowRet ?>
+                      </td>
+                      <td>
+                        <?php
+                        $borrowRet = $row['borrowRet'];
+                        $currentDate = date('Y-m-d');
+
+                        // Check if the 'Date of Return' is in the future
+                        if (strtotime($borrowRet) > strtotime($currentDate)) {
+                          // If the 'Date of Return' is in the future, display a message or leave it empty
+                          echo "Not applicable";
+                        } else {
+                          // Calculate the difference in days
+                          $dateDifference = strtotime($currentDate) - strtotime($borrowRet);
+                          $numberOfDays = abs(floor($dateDifference / (60 * 60 * 24)));
+
+                          // Display the number of days
+                          echo $numberOfDays;
+                        }
+                        ?>
+                      </td>
+                      <td><?php echo $finePerDay; ?></td>
+                      <td><?php echo number_format($totalFineAmount, 2); ?></td>
+                      <td><a id="redlinks" onclick="delete()"
+                          href="deleteFineController.php?Delete=<?php echo $id ?>"><b>Delete</b></a></td>
+
+                    </tr>
+                    <?php
+                  }
+                  ?>
+
+                </table><br>
+
+                <input type="button" value="Back " onclick="location.href='./manageFineModule.php'"><br>
+              </center>
+
             </div>
           </div>
-
         </div>
+
+      </div>
 
     </div>
   </section><!-- End Hero Section -->
@@ -203,7 +263,8 @@
     </div>
   </footer><!-- End Footer -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
   <!-- Uncomment below i you want to use a preloader -->
   <!-- <div id="preloader"></div> -->
 
@@ -219,21 +280,18 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-  
+
   <!-- Delete Book Confirmation -->
   <script>
-  function deleteBook()
-  {
-	if (confirm("All details will be deleted!!!"))
-	{
-		alert("The record has been deleted");
-	}
-	else
-	{
-		alert("Cancelled");
-	}
-  }
-  
+    function deleteBook() {
+      if (confirm("All details will be deleted!!!")) {
+        alert("The record has been deleted");
+      }
+      else {
+        alert("Cancelled");
+      }
+    }
+
   </script>
 
 </body>

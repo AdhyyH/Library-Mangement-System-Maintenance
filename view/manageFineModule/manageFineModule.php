@@ -80,10 +80,8 @@
                 <h2 class="animate__animated animate__fadeInDown">Fine Management</h2>
                
 				<form action="manageFine.php" method="post">	
-					<input type="button" value="Add Borrower" onclick="location.href='./addBorrowerDetails.php'">
 					<input type="button" value="View Details" onclick="location.href='./viewDetails.php'">
 					<input type="button" value="View Fine" onclick="location.href='./viewFineDetails.php'">
-					<input type="button" value="Add Fine Details" onclick="location.href='./calculateFine.php'">
 				</form>
 			  </div>
             </div>

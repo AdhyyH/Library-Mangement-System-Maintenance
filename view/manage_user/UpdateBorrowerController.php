@@ -13,14 +13,22 @@
 		$Borrower_type = $_POST['Borrower_type'];
 		$Borrower_Phone_num = $_POST['Borrower_Phone_num'];
 		$Borrower_Address = $_POST['Borrower_Address'];
+		$nameBook = $_POST['nameBook'];
+		$isbn = $_POST['isbn'];
+		$borrowDate = $_POST['borrowDate'];
+		$borrowRet = $_POST['borrowRet'];
 		
 		$query = "UPDATE borrower 
-					SET Borrower_ID='".$Borrower_ID."',
-					Borrower_name='".$Borrower_name."', 
-					Borrower_type='".$Borrower_type."',
-					Borrower_Phone_num='".$Borrower_Phone_num."',
-					Borrower_Address='".$Borrower_Address."'
-					WHERE Borrower_ID='".$Borrower_ID."'";
+				SET Borrower_ID='".$Borrower_ID."',
+				Borrower_name='".$Borrower_name."', 
+				Borrower_type='".$Borrower_type."',
+				Borrower_Phone_num='".$Borrower_Phone_num."',
+				Borrower_Address='".$Borrower_Address."',
+				nameBook='".$nameBook."',
+				isbn='".$isbn."',
+				borrowDate='".$borrowDate."',
+				borrowRet='".$borrowRet."'
+				WHERE Borrower_ID='".$Borrower_ID."'";
 
 		$result = mysqli_query($conn, $query);
 		

@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Fine Management</title>
+  <title>Add Borrower Record</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -26,7 +26,7 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
   
- <style>
+  <style>
 	input[type=text], input[type=number], input[type=date]
 	{
 	  width: 100%;
@@ -37,7 +37,7 @@
 	{
 		border: 3px solid black;
 		border-collapse: collapse;
-		padding: 7px;
+		padding: 5px;
 		text-align: left;
 		background: white;
 	}
@@ -46,15 +46,32 @@
 	{
 		background: #00aea6;
 		color: black;
-		width: 10%;
+		width: 20%;
 	}
 	
 	td
 	{
-		width: 120%;
+		width: 80%;
 	}
+	
+	#backButton, #submitButton, #resetButton
+	{
+		border-radius: 12px;
+		padding: 15px 20px;
+		font-color: black;
+		background: #ffe033;
+		text-align : center;
+		font-size : 15px;
+		font-weight: bold;
+	}
+	
+	#backButton:hover, #submitButton:hover, #resetButton:hover
+	{
+		background: black;
+		color: #ffe033;
+	}
+	
   </style>
-  
 
 </head>
 
@@ -76,8 +93,8 @@
 			  <li class="dropdown"><a href="#"><span>Menu</span> <i class="bi bi-chevron-down"></i></a>
                 <ul>
                   <li><a href="../manage_book_record/manage_book_record.php">Manage Book Record</a></li>
-                  <li><a href="../manage_user/ManageUser.php">Manage User</a></li>
-				  <li><a href="manageFineModule.php">Manage Fine</a></li>
+                  <li><a href="ManageUser.php">Manage User</a></li>
+				  <li><a href="../manageFineModule/manageFineModule.php">Manage Fine</a></li>
 				  <li><a href="../manage_reservation/managereserv.php">Manage Reservation</a></li>
 				  <li><a href="../viewReport/ReportMain.php">Report</a></li>
                 </ul>
@@ -107,48 +124,49 @@
           <div class="carousel-item active" style="background-image: url(assets/img/book/book1.jpg)">
             <div class="carousel-container">
               <div class="container">
-                
+                <h2 class="animate__animated animate__fadeInDown">Add New Librarian Record</h2>
+				<p class="animate__animated animate__fadeInUp">Please fill in the details below to add new details of librarian into the system</p>
+				
 				<!-- insert books -->
-				<form action="addBorrowerController.php" method="POST">
+				<form action="addLibrarianController.php" method="POST">
 				<input type="hidden" name="action" value="insert">
 					<center>
-						<table border="1">
-						<th Colspan="3" style="text-align:center; background-color:#00aea6"><h5><b>FINE TABLE</b></h5></th>
+						<table>
 							<tr>
-								<th>ID</th>
-								<td><input type="text" id="id" name="id" placeholder="ID"></td>
+								<th>Librarian ID</th>
+								<td><input type="text" id="librarianID" name="librarianID" placeholder="Input ID"></td>
 							</tr>
 							
 							<tr>
-								<th>Borrower Name</th>
-								<td><input type="text" id="borrower_name" name="borrower_name" placeholder="Borrower Name"></td>
+								<th>Name</th>
+								<td><input type="text" id="name" name="name" placeholder="Name"></td>
 							</tr>
 							
 							<tr>
-								<th>Book Title</th>
-								<td><input type="text" id="book_title" name="book_title" placeholder="Book Title"></td>
+								<th>Username</th>
+								<td><input type="text" id="username" name="username" placeholder="Username"></td>
 							</tr>
 							
 							<tr>
-								<th>ISBN</th>
-								<td><input type="text" id="isbn" name="isbn" placeholder="ISBN"></td>
+								<th>Password</th>
+								<td><input type="text" id="password" name="password" placeholder="Password"></td>
 							</tr>
 							
 							<tr>
-								<th>Borrowed Date</th>
-								<td><input type="date" id="borrowed_date" name="borrowed_date" placeholder="Borrowed Date"></td>
+								<th>Email</th>
+								<td><input type="text" id="Email" name="Email" placeholder="Email"></td>
 							</tr>
 							
 							<tr>
-								<th>Return Date</th>
-								<td><input type="date" id="return_date" name="return_date" placeholder="Return Date"></td>
+								<th>Phone Number</th>
+								<td><input type="text" id="phoneNum" name="phoneNum" placeholder="Phone Number"></td>
 							</tr>
-
+							
 						</table><br>
 						
-						<input type="button" value="Back " onclick="location.href='./manageFineModule.php'">
-						<input type="submit" value="Save" name="Confirm" onclick="addBorrowerDetails()">
-						<input type="reset" value="Reset">
+						<input type="button" id="backButton" name="Back" value="Back" onclick="location.href='./LibrarianList.php'">
+						<input type="submit" id="submitButton" value="Submit" name="submitButton" onclick="AddLibrarian()">
+						<input type="reset" id="resetButton" value="Reset"><br><br><br><br><br>
 					</center>
 				</form>
               </div>
@@ -196,13 +214,13 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   
-  <!-- Add Confirmation -->
+  <!-- Add Librarian Confirmation -->
   <script>
-  function addBorrowerDetails()
+  function addLibrarian()
   {
-	if (confirm("Click Ok to proceed "))
+	if (confirm("Please confirm that all the details of the borrower details is correct"))
 	{
-		alert("Borrower details are successfully added to the system");
+		alert("The librarian details was successfully inserted into the system");
 	}
 	else
 	{

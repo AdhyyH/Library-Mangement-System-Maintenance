@@ -166,6 +166,26 @@
 								<th>Address</th>
 								<td><input type="text" id="Borrower_Address" name="Borrower_Address" placeholder="Address"></td>
 							</tr>
+
+              <tr>
+								<th>Book Name</th>
+								<td><input type="text" id="nameBook" name="nameBook" placeholder="Book Name"></td>
+							</tr>
+
+              <tr>
+								<th>ISBN</th>
+								<td><input type="text" id="isbn" name="isbn" placeholder="ISBN Number"></td>
+							</tr>
+
+              <tr>
+								<th>Date of Borrow</th>
+								<td><input type="date" id="borrowDate" name="borrowDate" placeholder="Date of Borrow"></td>
+							</tr>
+
+              <tr>
+								<th>Date of Return</th>
+								<td><input type="date" id="borrowRet" name="borrowRet" placeholder="Date of Return"></td>
+							</tr>
 							
 						</table><br>
 						

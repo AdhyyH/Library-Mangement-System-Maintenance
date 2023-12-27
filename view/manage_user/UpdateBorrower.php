@@ -21,6 +21,10 @@
 		$Borrower_Phone_num = $row['Borrower_Phone_num'];
 		$Borrower_email = $row['Borrower_email'];
 		$Borrower_Address = $row['Borrower_Address'];
+    	$nameBook = $row['nameBook'];
+		$isbn = $row['isbn'];
+		$borrowDate = $row['borrowDate'];
+		$borrowRet = $row['borrowRet'];
 	}
 ?>
 
@@ -179,6 +183,26 @@
 							<tr>
 								<th>Address</th>
 								<td><input type="text" id="Borrower_Address" name="Borrower_Address" value="<?php echo $Borrower_Address ?>"></td>
+							</tr>
+
+							<tr>
+								<th>Book Name</th>
+								<td><input type="text" id="nameBook" name="nameBook" placeholder="Book Name" value="<?php echo $nameBook ?>"></td>
+							</tr>
+
+							<tr>
+								<th>ISBN</th>
+								<td><input type="text" id="isbn" name="isbn" placeholder="ISBN Number" value="<?php echo $isbn ?>"></td>
+							</tr>
+
+              				<tr>
+								<th>Date of Borrow</th>
+								<td><input type="date" id="borrowDate" name="borrowDate" placeholder="Date of Borrow" value="<?php echo $borrowDate ?>"></td>
+							</tr>
+
+              				<tr>
+								<th>Date of Return</th>
+								<td><input type="date" id="borrowRet" name="borrowRet" placeholder="Date of Return" value="<?php echo $borrowRet ?>"></td>
 							</tr>
 							
 							<tr>
