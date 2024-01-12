@@ -12,7 +12,8 @@
   <link href="assets/img/logo.png" rel="icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
@@ -36,17 +37,17 @@
       <div class="row justify-content-center align-items-center">
         <div class="col-xl-11 d-flex align-items-center justify-content-between">
           <h1 class="logo"><a href="../login/librarian.php">Library Management System</a></h1>
-          
+
           <nav id="navbar" class="navbar">
             <ul>
               <li><a class="nav-link scrollto active" href="../login/librarian.php">Home</a></li>
-			  <li class="dropdown"><a href="#"><span>Menu</span> <i class="bi bi-chevron-down"></i></a>
+              <li class="dropdown"><a href="#"><span>Menu</span> <i class="bi bi-chevron-down"></i></a>
                 <ul>
                   <li><a href="../manage_book_record.php">Manage Book Record</a></li>
                   <li><a href="../manage_user/ManageUser.php">Manage User</a></li>
-				  <li><a href="../manageFineModule/manageFineModule.php">Manage Fine</a></li>
-				  <li><a href="managereserv.php">Manage Reservation</a></li>
-				  <li><a href="../viewReport/ReportMain.php">Report</a></li>
+                  <li><a href="../manageFineModule/manageFineModule.php">Manage Fine</a></li>
+                  <li><a href="../manage_reservation/viewRReserv.php">Manage Reservation</a></li>
+                  <li><a href="../viewReport/ReportMain.php">Report</a></li>
                 </ul>
               </li>
               <li class="dropdown"><a href="#"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
@@ -67,24 +68,24 @@
   <section id="hero">
     <div class="hero-container">
 
-        <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
+      <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
 
-        <div class="carousel-inner" role="listbox">
+      <div class="carousel-inner" role="listbox">
 
-          <div class="carousel-item active" style="background-image: url(assets/img/book/book1.jpg)">
-            <div class="carousel-container">
-              <div class="container">
-                <h2 class="animate__animated animate__fadeInDown">Manage Reservation</h2>
-                <p class="animate__animated animate__fadeInUp">A place to <br>manage <br>all the reservation</p>
-				
-                    <input type="button" value="Book Reservation" onclick="location.href='./MBookReserv.php'">
-                    <input type="button" value="Room Reservation" onclick="location.href='./MRoomReserv.php'">
-                    <input type="button" value="Return Book" onclick="location.href='./MReturn.php'">
-  
-			  </div>
+        <div class="carousel-item active" style="background-image: url(assets/img/book/book1.jpg)">
+          <div class="carousel-container">
+            <div class="container">
+              <h2 class="animate__animated animate__fadeInDown">Manage Reservation</h2>
+              <p class="animate__animated animate__fadeInUp">A place to <br>manage <br>all the reservation</p>
+
+              <input type="button" value="Book Reservation" onclick="location.href='./MBookReserv.php'">
+              <input type="button" value="Room Reservation" onclick="location.href='./MRoomReserv.php'">
+              <input type="button" value="Return Book" onclick="location.href='./MReturn.php'">
+
             </div>
           </div>
         </div>
+      </div>
 
     </div>
   </section><!-- End Hero Section -->
@@ -114,7 +115,7 @@
               <i class="bi bi-phone"></i>
               <h3>Phone Number</h3>
               <p><a href="tel:+609-4245600">09-424 5600 (P)</a></p>
-			  <p><a href="tel:+609-5493131">09-549 3131 (G)</a></p>
+              <p><a href="tel:+609-5493131">09-549 3131 (G)</a></p>
             </div>
           </div>
 
@@ -125,7 +126,7 @@
               <p><a href="mailto:umplibrary@ump.edu.my">umplibrary@ump.edu.my</a></p>
             </div>
           </div>
-		  
+
         </div>
 
       </div>
@@ -152,7 +153,8 @@
     </div>
   </footer><!-- End Footer -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
   <!-- Uncomment below i you want to use a preloader -->
   <!-- <div id="preloader"></div> -->
 

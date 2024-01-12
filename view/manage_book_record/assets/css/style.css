@@ -927,11 +927,11 @@ input[type=submit]
   background-color: #ffd600;
   border: none;
   color: black;
-  padding: 20px;
+  padding: 8px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 20px;
+  font-size: 8px;
   font-weight: bold;
   cursor: pointer;
   width: 15%;
@@ -948,7 +948,7 @@ input[type=reset]
   background-color: #ffd600;
   border: none;
   color: black;
-  padding: 20px;
+  padding: 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;

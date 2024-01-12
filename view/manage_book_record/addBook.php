@@ -149,8 +149,8 @@
 							</tr>
 						</table><br>
 						
-						<input type="button" value="Back" onclick="location.href='./manage_book_record.php'">
-						<input type="submit" value="Submit" name="Confirm" onclick="addBook()">
+						<input type="button" value="Back" onclick="location.href='../manage_book_record/manage_book_record.php'"> 
+						<input type="submit" value="Submit" name="Confirm" onclick="addBook()"> 
 						<input type="reset" value="Reset">
 					</center>
 				</form>

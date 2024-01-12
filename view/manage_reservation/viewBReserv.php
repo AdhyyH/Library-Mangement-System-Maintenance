@@ -35,6 +35,47 @@
         border-radius: 10px;
         box-shadow: 0 4px 8px 0 #00aea6f0, 0 6px 20px 0 #00aea6f0;
         }
+
+    .my-custom-scrollbar {
+      position: relative;
+      height: 350px; /* Set your desired height */
+      overflow: auto;
+    }
+
+    .table-wrapper-scroll-y {
+      display: block;
+    }
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    tbody {
+      display: block;
+      max-height: 200px; /* Adjust the max-height as needed */
+      overflow-y: auto;
+    }
+
+    tr {
+      display: table;
+      width: 100%;
+      box-sizing: border-box;
+    }
 </style>
 </head>
 
@@ -88,51 +129,9 @@
                 <h3 style="color:white" class="animate__animated animate__fadeInDown">Manage Book Reservation</h3>
                 <div class="container1">
                     <div class="box">
-                    <h9 style="color:white;" class="display-4 text-center">View List of Book Reservation</h9>
+                    <h9 style="color:white;" class="display-4 text-center">List of Book Reservation</h9>
 
-                    <?php if (isset($_GET['success'])) { ?>
-                    <div class="alert alert-success" role="alert">
-                        <?php echo $_GET['success']; ?>
-                    </div>
-                    <?php }?>
-
-                    <?php if (mysqli_num_rows($result)){?>
-                    <table class="table table-striped">
-                    <thead>
-                        <tr>
-                        <th scope="col">Book Reservation ID</th>
-                        <th scope="col">Borrower Name</th>
-                        <th scope="col">ISBN</th>
-                        <th scope="col">Book Name</th>
-                        <th scope="col">Borrow Date</th>
-                        <th scope="col">Return Date</th>
-                        <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    $n = 0;
-                    while($rows = mysqli_fetch_assoc($result)){
-                        $n++;
-                    ?>
-                        <tr>
-                        <th scope="row"><?=$n?></th>
-                        <td><?=$rows['BorrowerName']?></td>
-                        <td><?php echo $rows['ISBN']; ?></td>
-                        <td><?php echo $rows['BookName']; ?></td>
-                        <td><?php echo $rows['BorrowDate']; ?></td>
-                        <td><?php echo $rows['ReturnDate']; ?></td>
-                        <td><a href="EditBReserv.php?BookReservID=<?=$rows['BookReservID']?>" 
-                              class="btn btn-success">Edit</a>
-
-                            <a href="controller/deleteBReserv_ctrl.php?BookReservID=<?=$rows['BookReservID']?>" 
-                              class="btn btn-danger">Delete</a></td>
-                        </tr>
-                    <?php  }?>
-                    </tbody>
-                    </table>
-                    <?php  }?>
-                    <div >
+                    
                     <a href="MBookReserv.php" class="btn btn-primary">Create</a>
                     <a href="managereserv.php" class="btn btn-primary">Back</a>
                     </div>
