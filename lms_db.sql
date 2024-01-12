@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 27, 2023 at 06:51 PM
+-- Generation Time: Jan 12, 2024 at 05:47 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -42,6 +42,7 @@ CREATE TABLE `book` (
 --
 
 INSERT INTO `book` (`ISBN`, `Book_title`, `Book_author`, `Book_desc`, `publication_date`, `totalPages`, `Book_rating`) VALUES
+('', '', '', '', '0000-00-00', 0, '0'),
 ('9708131857575', 'C++ How To Program', 'Harvey M. Deitel, Paul J. Deitel', 'Education', '2005-12-25', 749, '4'),
 ('9780026515627', 'Glencoe Health, A Guide to Wellness, Student Edition', 'McGraw-Hill Education', 'Education', '1998-01-23', 448, '5'),
 ('9780030020780', 'Principles of Instrumental Analysis', 'Timothy A. Nieman, F. James Holler, Douglas A.Skoo', 'Education', '1998-03-02', 882, '4'),
@@ -212,22 +213,24 @@ CREATE TABLE `roomreservation` (
   `RoomID` varchar(5) NOT NULL,
   `RoomName` varchar(20) NOT NULL,
   `RoomDetails` varchar(50) NOT NULL,
-  `reservDate` date NOT NULL
+  `reservDate` date NOT NULL,
+  `reserveTime` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `roomreservation`
 --
 
-INSERT INTO `roomreservation` (`RoomReservID`, `BorrowerName`, `RoomID`, `RoomName`, `RoomDetails`, `reservDate`) VALUES
-(1, 'Halimah binti Tajul', 'L11', 'Metting Room', 'Room for lecturer and student have a meeting', '2021-04-03'),
-(2, 'Siti Mariam binti Halim', 'L12', 'Media Room', 'Room that have all the audio visual media', '2021-04-03'),
-(3, 'Jefri bin Manaf', 'L13', 'Computer Room', 'Room for computer class', '2021-04-11'),
-(4, 'Muhamad Amirul bin Shukri', 'L11', 'Metting Room', 'Room for lecturer and student have a meeting', '2021-04-25'),
-(5, 'Tan Chen Long', 'L14', 'Research Room', 'Room for lecturer and student so the research', '2021-05-09'),
-(6, 'Kumar A/L Madialagen', 'L13', 'Computer Room', 'Room for computer class', '2021-05-11'),
-(7, 'Nurul Farahani binti Mustafa', 'L14', 'Research Room', 'Room for lecturer and student so the research', '2021-05-13'),
-(8, 'Sakinah Amirah binti Halim', 'L12', 'Media Room', 'Room that have all the audio visual media', '2021-05-19');
+INSERT INTO `roomreservation` (`RoomReservID`, `BorrowerName`, `RoomID`, `RoomName`, `RoomDetails`, `reservDate`, `reserveTime`) VALUES
+(1, 'Halimah binti Tajul', 'L11', 'Metting Room', 'Room for lecturer and student have a meeting', '2021-04-03', '00:00:00'),
+(2, 'Siti Mariam binti Halim', 'L12', 'Media Room', 'Room that have all the audio visual media', '2021-04-03', '00:00:00'),
+(3, 'Jefri bin Manaf', 'L13', 'Computer Room', 'Room for computer class', '2021-04-11', '00:00:00'),
+(4, 'Muhamad Amirul bin Shukri', 'L11', 'Metting Room', 'Room for lecturer and student have a meeting', '2021-04-25', '00:00:00'),
+(5, 'Tan Chen Long', 'L14', 'Research Room', 'Room for lecturer and student so the research', '2021-05-09', '00:00:00'),
+(6, 'Kumar A/L Madialagen', 'L13', 'Computer Room', 'Room for computer class', '2021-05-11', '00:00:00'),
+(7, 'Nurul Farahani binti Mustafa', 'L14', 'Research Room', 'Room for lecturer and student so the research', '2021-05-13', '00:00:00'),
+(8, 'Sakinah Amirah binti Halim', 'L12', 'Media Room', 'Room that have all the audio visual media', '2021-05-19', '00:00:00'),
+(11, 'Ikhmal hensem', 'L11', 'Metting Room', 'Room for lecturer and student have a meeting', '2024-01-28', '13:30:00');
 
 --
 -- Indexes for dumped tables
@@ -289,7 +292,7 @@ ALTER TABLE `returnbook`
 -- AUTO_INCREMENT for table `roomreservation`
 --
 ALTER TABLE `roomreservation`
-  MODIFY `RoomReservID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `RoomReservID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

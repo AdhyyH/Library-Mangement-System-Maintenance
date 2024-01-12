@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2021 at 12:48 AM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 8.0.6
+-- Generation Time: Jan 12, 2024 at 05:47 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,9 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `lms_db`
 --
-CREATE DATABASE lms_db;
-
-USE lms_db;
 
 -- --------------------------------------------------------
 
@@ -38,13 +35,14 @@ CREATE TABLE `book` (
   `publication_date` date DEFAULT NULL,
   `totalPages` int(11) DEFAULT NULL,
   `Book_rating` decimal(10,0) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `book`
 --
 
 INSERT INTO `book` (`ISBN`, `Book_title`, `Book_author`, `Book_desc`, `publication_date`, `totalPages`, `Book_rating`) VALUES
+('', '', '', '', '0000-00-00', 0, '0'),
 ('9708131857575', 'C++ How To Program', 'Harvey M. Deitel, Paul J. Deitel', 'Education', '2005-12-25', 749, '4'),
 ('9780026515627', 'Glencoe Health, A Guide to Wellness, Student Edition', 'McGraw-Hill Education', 'Education', '1998-01-23', 448, '5'),
 ('9780030020780', 'Principles of Instrumental Analysis', 'Timothy A. Nieman, F. James Holler, Douglas A.Skoo', 'Education', '1998-03-02', 882, '4'),
